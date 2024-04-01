@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mateam.application.adapter.out.persistence.match.WriteMatchRepository">
+
+    <select id="insertMatch"
+            resultType="com.mateam.application.adapter.out.persistence.match.entity.MatchEntity">
+        INSERT INTO mtc.match_master
+            (match_num
+            , match_date
+            , match_cpl_ysno
+            , start_ysno
+            , stadium_num
+            , crtr_id
+            , cret_dttm
+            , amnr_id
+            , amnd_dttm
+            , dlt_ysno)
+        VALUES
+        (nextval('match_num_sequence')
+        , now()
+        , #{matchCplYsno}
+        , #{startYsno}
+        , #{stadiumNum}
+        , 'test'
+        , now()
+        , 'test'
+        , now()
+        , 'N'
+        )
+    </select>
+
+</mapper>

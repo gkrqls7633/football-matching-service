@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>풋살 매칭 서비스</title>
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>풋살 매칭 서비스</h1>
+        <nav>
+            <ul>
+                <li><a href="/">홈</a></li>
+                <li><a href="/matchMain">매치 찾기</a></li>
+                <li><a href="#">매치 생성</a></li>
+                <li><a href="#">마이 페이지</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="match_search">
+        <div class="container">
+            <h2>매치 찾기</h2>
+            <form action="/matchMain" method="post">
+                <label for="team_size">팀 규모:</label>
+                <select name="team_size" id="team_size">
+                    <option value="5vs5">5vs5</option>
+                    <option value="6vs6">6vs6</option>
+                    <option value="7vs7">7vs7</option>
+                    <!-- 다른 옵션들 추가 가능 -->
+                </select>
+                <button type="submit">매치 찾기</button>
+            </form>
+            <div id="match_results">
+                <!-- 매치 결과가 여기에 동적으로 표시될 것입니다. -->
+            </div>
+        </div>
+    </section>
+
+    <section id="match_create">
+        <div class="container">
+            <h2>매치 생성</h2>
+            <form action="#" method="post">
+                <label for="team_name">팀 이름:</label>
+                <input type="text" id="team_name" name="team_name">
+                <label for="team_size_create">팀 규모:</label>
+                <select name="team_size_create" id="team_size_create">
+                    <option value="5vs5">5vs5</option>
+                    <option value="6vs6">6vs6</option>
+                    <option value="7vs7">7vs7</option>
+                    <!-- 다른 옵션들 추가 가능 -->
+                </select>
+                <button type="submit">매치 생성</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 풋살 매칭 서비스</p>
+    </div>
+</footer>
+</body>
+</html>

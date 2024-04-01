@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매치 찾기 중...</title>
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>풋살 매칭 서비스</h1>
+        <nav>
+            <ul>
+                <li><a href="/">홈</a></li>
+                <li><a href="/matchMain">매치 찾기</a></li>
+                <li><a href="#">매치 생성</a></li>
+                <li><a href="#">마이 페이지</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="loader-wrapper">
+    <div class="loader"></div>
+    <h2 class="loading-text">매칭팀 찾는중...</h2>
+</div>
+<button id="stop_match" name="matchButton">매칭 중지</button>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("stop_match").addEventListener("click", function() {
+            toggleMatchButton();
+        });
+    });
+
+    function toggleMatchButton() {
+        var button = document.getElementsByName("matchButton")[0];
+        var loader = document.querySelector('.loader');
+        var loadText = document.querySelector('.loading-text');
+
+        if (button.textContent === "매칭 중지") {
+            button.textContent = "매칭 시작";
+            button.id = "start_match";
+
+            loader.style.animationPlayState = 'paused';
+            loadText.textContent = "";
+
+        } else {
+            button.textContent = "매칭 중지";
+            button.id = "stop_match";
+
+            loader.style.animationPlayState = 'running';
+            loadText.textContent = "매칭팀 찾는중...";
+        }
+    }
+
+</script>
+</body>
+</html>

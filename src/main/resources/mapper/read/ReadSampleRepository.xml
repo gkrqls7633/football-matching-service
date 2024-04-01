@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mateam.application.adapter.out.persistence.sample.ReadSampleRepository">
+
+    <select id="getSample"
+            parameterType="com.mateam.application.adapter.out.persistence.sample.entity.SampleEntity"
+            resultType="String">
+        select dgct_vndr_code
+        from t_ps_ptr_stf_id_m
+        where dgct_ptr_stf_num = #{dgctPtrStfNum}
+    </select>
+
+</mapper>
