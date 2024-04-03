@@ -5,6 +5,7 @@ import com.mateam.application.domain.match.MatchRequest;
 import com.mateam.util.ResponseMessageDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,11 +35,11 @@ public class MatchController {
 
     @ResponseBody
     @GetMapping("/selectMatch")
-    public List<Map<String, Object>> selectMatchList() {
+    public ResponseEntity selectMatchList() {
 
-//        Map<String, MatchRequest> data = (Map<String, MatchRequest>) matchInPort.selectMatchList();
+        List<Map<String, Object>> res = matchInPort.selectMatchList();
 
-        return matchInPort.selectMatchList();
+        return ResponseEntity.ok(res);
 
     }
 
