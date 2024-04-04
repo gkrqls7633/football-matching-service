@@ -24,34 +24,67 @@
     <div class="loader"></div>
     <h2 class="loading-text">매칭팀 찾는중...</h2>
 </div>
-<button id="stop_match" name="matchButton">매칭 중지</button>
+<div id="matchListContainer"></div>
+<button id="stop_match" name="matchButton" onclick="toggleMatchButton()">매칭 중지</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("stop_match").addEventListener("click", function() {
-            toggleMatchButton();
-        });
-    });
 
-    function toggleMatchButton() {
-        var button = document.getElementsByName("matchButton")[0];
-        var loader = document.querySelector('.loader');
-        var loadText = document.querySelector('.loading-text');
+    //매치 목록 조회 api 호출
+    function selectMatchList() {
+       $.ajax({
+           url: "http://localhost:8080/match/selectMatch",
+           type: "GET",
+           success: function(response) {
+               console.log(response);
+               renderList(response);
 
-        if (button.textContent === "매칭 중지") {
-            button.textContent = "매칭 시작";
-            button.id = "start_match";
+           },
+           error: function(xhr, status, error) {
+               console.error(status, error);
+           }
+       });
+   }
 
-            loader.style.animationPlayState = 'paused';
-            loadText.textContent = "";
+    function renderList(data) {
+        var matchListContainer = $("#matchListContainer");
+        matchListContainer.empty();
 
-        } else {
-            button.textContent = "매칭 중지";
-            button.id = "stop_match";
-
-            loader.style.animationPlayState = 'running';
-            loadText.textContent = "매칭팀 찾는중...";
+        for (var i = 0; i < data.length; i++) {
+            var listItem = $("<div>").text(data[i].match_num);
+            matchListContainer.append(listItem);
         }
     }
+
+    //페이지 접근 후 바로 api 호출
+   document.addEventListener("DOMContentLoaded", function() {
+       selectMatchList();
+   });
+
+   //매칭 버튼 조작
+   function toggleMatchButton() {
+       var button = document.getElementsByName("matchButton")[0];
+       var loader = document.querySelector('.loader');
+       var loadText = document.querySelector('.loading-text');
+
+       if (button.textContent === "매칭 중지") {
+           button.textContent = "매칭 시작";
+           button.id = "start_match";
+
+           loader.style.animationPlayState = 'paused';
+           loadText.textContent = "";
+
+       } else {
+           button.textContent = "매칭 중지";
+           button.id = "stop_match";
+
+           loader.style.animationPlayState = 'running';
+           loadText.textContent = "매칭팀 찾는중...";
+
+           //match 리스트 호출
+           selectMatchList();
+       }
+   }
 
 </script>
 </body>
