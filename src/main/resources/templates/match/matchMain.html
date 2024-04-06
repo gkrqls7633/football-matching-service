@@ -25,6 +25,20 @@
     <h2 class="loading-text">매칭팀 찾는중...</h2>
 </div>
 <div id="matchListContainer"></div>
+    <table id="matchTable">
+        <thead>
+        <tr>
+            <th>매치 NO</th>
+<!--            <th>팀명</th>-->
+            <th>매칭 일자</th>
+            <th>매칭 여부</th>
+            <th>경기장</th>
+        </tr>
+        </thead>
+        <tbody id="matchTableBody">
+        <!-- 매칭 가능한 팀 정보는 여기에 동적으로 추가됩니다 -->
+        </tbody>
+    </table>
 <button id="stop_match" name="matchButton" onclick="toggleMatchButton()">매칭 중지</button>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -37,6 +51,8 @@
            type: "GET",
            success: function(response) {
                console.log(response);
+
+               //매칭 정보 렌더링
                renderList(response);
 
            },
@@ -46,13 +62,39 @@
        });
    }
 
+
+    function dateFormatChng(date) {
+        var date = new Date(date);
+
+        // 년, 월, 일, 시간, 분 추출
+        var year = date.getFullYear();
+        var month = String(date.getMonth() + 1).padStart(2, '0');
+        var day = String(date.getDate()).padStart(2, '0');
+        var hours = String(date.getHours()).padStart(2, '0');
+        var minutes = String(date.getMinutes()).padStart(2, '0');
+
+        var formattedDate = year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+
+        return formattedDate;
+
+    }
+
+    //매칭 정보 렌더링 함수 호출
     function renderList(data) {
-        var matchListContainer = $("#matchListContainer");
+        var matchListContainer = $("#matchTableBody");
         matchListContainer.empty();
 
         for (var i = 0; i < data.length; i++) {
-            var listItem = $("<div>").text(data[i].match_num);
-            matchListContainer.append(listItem);
+            var mathInfo = data[i];
+            var row = $("<tr>");
+
+            // 각 팀 정보를 열로 추가
+            row.append($("<td>").text(mathInfo.match_num));
+            row.append($("<td>").text(dateFormatChng(mathInfo.match_date)));
+            row.append($("<td>").text(mathInfo.match_cpl_ysno));
+            row.append($("<td>").text(mathInfo.stadium_num));
+
+        matchListContainer.append(row);
         }
     }
 
