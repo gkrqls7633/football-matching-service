@@ -32,6 +32,7 @@
 <!--            <th>팀명</th>-->
             <th>매칭 일자</th>
             <th>매칭 여부</th>
+            <th>경기 시작 여부</th>
             <th>경기장</th>
         </tr>
         </thead>
@@ -92,6 +93,7 @@
             row.append($("<td>").text(mathInfo.match_num));
             row.append($("<td>").text(dateFormatChng(mathInfo.match_date)));
             row.append($("<td>").text(mathInfo.match_cpl_ysno));
+            row.append($("<td>").text(mathInfo.start_ysno));
             row.append($("<td>").text(mathInfo.stadium_num));
 
         matchListContainer.append(row);

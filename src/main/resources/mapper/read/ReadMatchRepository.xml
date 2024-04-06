@@ -6,12 +6,18 @@
         SELECT
           match_num
         , DATE_TRUNC('hour', match_date::timestamp) as match_date
-        , match_cpl_ysno
-        , start_ysno
+        , case when match_cpl_ysno = 'Y' then '매칭 완료'
+               else '매칭 가능'
+               end as match_cpl_ysno
+        , case when start_ysno = 'Y' then '진행중'
+               else '대기중'
+               end as start_ysno
         , stadium_num
         FROM mtc.match_master
         WHERE 1=1
         AND dlt_ysno = 'N'
+        limit 10
+        ;
     </select>
 
 </mapper>
