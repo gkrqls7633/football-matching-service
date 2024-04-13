@@ -49,6 +49,7 @@ public class MatchController {
         return ResponseMessageDto.of("resultCode", "message", ResponseMessageDto.of("a", "b", "c"));
     }
 
+    //매치 생성
     @PostMapping("/insertMatch")
     public ResponseEntity<String> insertMatch(@RequestBody MatchRequest matchRequest) {
         try {

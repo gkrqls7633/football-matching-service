@@ -5,7 +5,7 @@
     <select id="insertMatch"
             resultType="com.mateam.application.adapter.out.persistence.match.entity.MatchEntity">
         INSERT INTO mtc.match_master
-            (match_num
+            ( match_num
             , match_date
             , match_cpl_ysno
             , start_ysno
@@ -14,18 +14,22 @@
             , cret_dttm
             , amnr_id
             , amnd_dttm
-            , dlt_ysno)
+            , dlt_ysno
+            , match_person_cnt
+            , match_time)
         VALUES
-        (nextval('match_num_sequence')
+        ( nextval('match_num_sequence')
         , now()
-        , #{matchCplYsno}
-        , #{startYsno}
+        , 'N'
+        , 'N'
         , #{stadiumNum}
         , 'test'
         , now()
         , 'test'
         , now()
         , 'N'
+        , #{matchPersonCnt}
+        , #{matchTime}
         )
     </select>
 

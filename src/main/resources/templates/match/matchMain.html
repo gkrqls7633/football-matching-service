@@ -24,7 +24,10 @@
     <div class="loader"></div>
     <h2 class="loading-text">매칭팀 찾는중...</h2>
 </div>
-<div id="matchListContainer"></div>
+<div>
+    <button id="stop_match" name="matchButton" onclick="toggleMatchButton()">매칭 중지</button>
+</div>
+<div id="matchListContainer">
     <table id="matchTable">
         <thead>
         <tr>
@@ -40,8 +43,7 @@
         <!-- 매칭 가능한 팀 정보는 여기에 동적으로 추가됩니다 -->
         </tbody>
     </table>
-<button id="stop_match" name="matchButton" onclick="toggleMatchButton()">매칭 중지</button>
-
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 

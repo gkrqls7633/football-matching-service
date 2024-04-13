@@ -160,3 +160,9 @@ display: block;
     background-color: #555;
 
 }
+
+#matchListContainer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
