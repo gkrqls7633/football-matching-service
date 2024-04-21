@@ -1,6 +1,8 @@
 package com.mateam.application.adapter.in.controller.match;
 
 import com.mateam.application.biz.match.port.in.MatchInPort;
+import com.mateam.application.domain.match.MatchApplyRequest;
+import com.mateam.application.domain.match.MatchApproveRequest;
 import com.mateam.application.domain.match.MatchRequest;
 import com.mateam.util.ResponseMessageDto;
 import lombok.RequiredArgsConstructor;
@@ -63,6 +65,24 @@ public class MatchController {
         }
     }
 
-    //매치
+    //매치 상세 조회
 
+
+    // 매치 정보 변경
+    @PutMapping("/updateMatch")
+    public ResponseEntity<String> updateMatch(@RequestBody MatchRequest matchRequest){
+        return ResponseEntity.ok("Match updated successfully!");
+    }
+
+    // 매치 요청(신청)
+    @PostMapping("/applyMatch")
+    public ResponseEntity<String> applyMatch(@RequestBody MatchApplyRequest matchApplyRequest){
+        return ResponseEntity.ok("Match applied successfully!");
+    }
+
+    // 매치 승인
+    @PostMapping("/approveMatch")
+    public ResponseEntity<String> approveMatch(@RequestBody MatchApproveRequest matchApproveRequest){
+        return ResponseEntity.ok("Match approved successfully!");
+    }
 }
