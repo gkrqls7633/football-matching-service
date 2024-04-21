@@ -4,19 +4,26 @@
 
     <select id="selectMatchList" resultType="map">
         SELECT
-          match_num
-        , DATE_TRUNC('hour', match_date::timestamp) as match_date
-        , case when match_cpl_ysno = 'Y' then '매칭 완료'
-               else '매칭 가능'
-               end as match_cpl_ysno
-        , case when start_ysno = 'Y' then '진행중'
-               else '대기중'
-               end as start_ysno
-        , stadium_num
-        FROM mtc.match_master
+              t1.match_num
+            , to_char(DATE_TRUNC('hour', t1.match_date::timestamp), 'mm/dd') as match_date
+            , to_char(DATE_TRUNC('hour', t1.match_date::timestamp), 'HH24:MI') as match_time
+            , case when t1.match_cpl_ysno = 'Y' then '매칭 완료'
+                else '매칭 가능'
+                end as match_cpl_ysno
+            , case when t1.start_ysno = 'Y' then '진행중'
+                else '대기중'
+                end as start_ysno
+            , t2.stad_name
+            , t1.home_team
+            , t1.away_team
+        FROM mtc.match_master t1
+        INNER JOIN mtc.stadium_master t2
+        ON t1.stadium_num = t2.stadium_num
         WHERE 1=1
-        AND dlt_ysno = 'N'
-        limit 10
+        AND t1.dlt_ysno = 'N'
+        AND t2.dlt_ysno = 'N'
+        ORDER BY match_date, match_time
+        Limit 10
         ;
     </select>
 

@@ -9,12 +9,14 @@
 <body>
 <header>
     <div class="container">
-        <h1>풋살 매칭 서비스</h1>
+        <h1>우리동네 축구팀</h1>
         <nav>
             <ul>
                 <li><a href="/">홈</a></li>
                 <li><a href="/matchMain">매치 찾기</a></li>
                 <li><a href="#">매치 생성</a></li>
+                <li><a href="#">팀 등록</a></li>
+                <li><a href="#">팀 순위</a></li>
                 <li><a href="#">마이 페이지</a></li>
             </ul>
         </nav>
@@ -31,12 +33,12 @@
     <table id="matchTable">
         <thead>
         <tr>
-            <th>매치 NO</th>
-<!--            <th>팀명</th>-->
-            <th>매칭 일자</th>
-            <th>매칭 여부</th>
-            <th>경기 시작 여부</th>
-            <th>경기장</th>
+            <th class="cell-style centered-text" style="width: 100px;">날짜</th>
+            <th class="cell-style centered-text" style="width: 100px;">시간</th>
+            <th class="cell-style centered-text" style="width: 400px;">경기장</th>
+            <th class="cell-style centered-text" style="width: 300px;">팀명</th>
+            <th class="cell-style centered-text" style="width: 130px;">매칭 여부</th>
+            <th class="cell-style centered-text" style="width: 170px;">경기시작 여부</th>
         </tr>
         </thead>
         <tbody id="matchTableBody">
@@ -66,22 +68,6 @@
    }
 
 
-    function dateFormatChng(date) {
-        var date = new Date(date);
-
-        // 년, 월, 일, 시간, 분 추출
-        var year = date.getFullYear();
-        var month = String(date.getMonth() + 1).padStart(2, '0');
-        var day = String(date.getDate()).padStart(2, '0');
-        var hours = String(date.getHours()).padStart(2, '0');
-        var minutes = String(date.getMinutes()).padStart(2, '0');
-
-        var formattedDate = year + "-" + month + "-" + day + " " + hours + ":" + minutes;
-
-        return formattedDate;
-
-    }
-
     //매칭 정보 렌더링 함수 호출
     function renderList(data) {
         var matchListContainer = $("#matchTableBody");
@@ -92,12 +78,12 @@
             var row = $("<tr>");
 
             // 각 팀 정보를 열로 추가
-            row.append($("<td>").text(mathInfo.match_num));
-            row.append($("<td>").text(dateFormatChng(mathInfo.match_date)));
-            row.append($("<td>").text(mathInfo.match_cpl_ysno));
-            row.append($("<td>").text(mathInfo.start_ysno));
-            row.append($("<td>").text(mathInfo.stadium_num));
-
+            row.append($("<td>").text(mathInfo.match_date).addClass("cell-style"));
+            row.append($("<td>").text(mathInfo.match_time).addClass("cell-style"));
+            row.append($("<td>").text(mathInfo.stad_name).addClass("cell-style"));
+            row.append($("<td>").text(mathInfo.home_team).addClass("cell-style"));
+            row.append($("<td>").text(mathInfo.match_cpl_ysno).addClass("cell-style"));
+            row.append($("<td>").text(mathInfo.start_ysno).addClass("cell-style"));
         matchListContainer.append(row);
         }
     }

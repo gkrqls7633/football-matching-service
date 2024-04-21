@@ -166,3 +166,17 @@ display: block;
     left: 50%;
     transform: translateX(-50%);
 }
+
+.cell-style {
+    padding: 10px; /* 내부 여백을 지정합니다 */
+    text-align: center;
+}
+
+#matchListContainer #matchTable .cell-style {
+    padding: 10px; /* 내부 여백을 지정합니다 */
+}
+
+/* 텍스트를 가운데로 정렬합니다 */
+#matchListContainer #matchTable .centered-text {
+    text-align: center;
+}
