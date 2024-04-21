@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mateam.application.adapter.out.persistence.team.WriteTeamRepository">
+
+    <select id="createTeam"
+            resultType="com.mateam.application.adapter.out.persistence.team.Entity.TeamEntity">
+        insert into mtc.team_master
+        (
+          team_num
+        , team_name
+        , team_mbr_cnt
+        , pref_region
+        , team_make_date
+        , mtc_cnt
+        , crtr_id
+        , cret_dttm
+        , amnr_id
+        , amnd_dttm
+        , dlt_ysno
+        )
+        values
+        (
+          nextval('team_num_sequence')
+        , #{teamName}
+        , 0
+        , #{prefRegion}
+        , now()
+        , #{mtcCnt}
+        , 'test'
+        , now()
+        , 'test'
+        , now()
+        , 'N'
+        )
+    </select>
+
+</mapper>
