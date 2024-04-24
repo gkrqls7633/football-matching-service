@@ -16,10 +16,12 @@
             , t2.stad_name
             , t1.home_team
             , t1.away_team
+            , t1.match_person_cnt
         FROM mtc.match_master t1
         INNER JOIN mtc.stadium_master t2
         ON t1.stadium_num = t2.stadium_num
         WHERE 1=1
+        AND t1.match_person_cnt = #{teamsize}
         AND t1.dlt_ysno = 'N'
         AND t2.dlt_ysno = 'N'
         ORDER BY match_date, match_time

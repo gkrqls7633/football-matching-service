@@ -24,16 +24,32 @@
 </header>
 
 <main>
+    <div class="carousel--container" style="display: flex; justify-content: center;">
+        <ul class="carousel--wrapper">
+            <div class="draggable" style="padding: 0px;">
+                <div class="slick-track">
+                    <li data-banner-title="903 플랩 소셜 문화" class="carousel--hero" tabindex="-1" style="width: 100;">
+                        <a href="https://www.plabfootball.com/magazine/10/" tabindex="-1">
+                            <div class="carousel--img">
+                                <img src="https://d31wz4d3hgve8q.cloudfront.net/media/banner-manner_pc.png" class="carousel--img_pc">
+                            </div>
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </ul>
+    </div>
+
     <section id="match_search">
         <div class="container">
             <h2>매치 찾기</h2>
-            <form action="/match/selectMatch" method="get">
+            <form id="match_form" action="/match/main" method="get">
                 <label for="team_size">팀 규모:</label>
                 <select name="team_size" id="team_size">
-                    <option value="5vs5">5vs5</option>
-                    <option value="6vs6">6vs6</option>
-                    <option value="7vs7">7vs7</option>
-                    <!-- 다른 옵션들 추가 가능 -->
+                    <option value="4">4vs4</option>
+                    <option value="5">5vs5</option>
+                    <option value="6">6vs6</option>
+                    <option value="7">7vs7</option>
                 </select>
                 <button type="submit">매치 찾기</button>
             </form>
@@ -67,5 +83,19 @@
         <p>&copy; 2024 우리동네 축구팀</p>
     </div>
 </footer>
+
+<script>
+
+    // 매치 vs 정보 받아서 매치조회
+    document.getElementById('match_form').addEventListener('submit', function(event) {
+        var teamsize = document.getElementById('team_size').value;
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl + 'match/selectMath' + '?teamsize=' + teamsize;
+        window.location.href = newUrl;
+        event.preventDefault();
+    });
+</script>
+</script>
+
 </body>
 </html>

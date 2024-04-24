@@ -25,15 +25,8 @@ public class MatchPersistenceAdapter implements MatchOutPort {
     }
 
     @Override
-    public List<Map<String, Object>> selectMatchList() {
-        List<Map<String, Object>> resultList = readMatchRepository.selectMatchList();
-
-        // 이 부분에서 필요한 가공 작업을 수행할 수 있습니다.
-        // 예를 들어, 리스트의 첫 번째 결과만 가져와서 사용할 수 있습니다.
-//        Map<String, Object> resultMap = new HashMap<>();
-//        if (!resultList.isEmpty()) {
-//            resultMap = resultList.get(0);
-//        }
+    public List<Map<String, Object>> selectMatchList(Integer teamsize) {
+        List<Map<String, Object>> resultList = readMatchRepository.selectMatchList(teamsize);
 
         return resultList;
     }

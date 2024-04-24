@@ -4,13 +4,12 @@ import com.mateam.application.biz.match.port.in.MatchInPort;
 import com.mateam.application.domain.match.MatchApplyRequest;
 import com.mateam.application.domain.match.MatchApproveRequest;
 import com.mateam.application.domain.match.MatchRequest;
-import com.mateam.util.ResponseMessageDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +23,12 @@ public class MatchController {
 
     private final MatchInPort matchInPort;
 
+    //매치 화면 조회
     @GetMapping("/main")
-    public String matchHome() {
+    public String matchHome(@RequestParam(name="teamsize", required = false) Integer teamsize, Model model) {
+
+        model.addAttribute("teamsize", teamsize);
+
         return "/match/matchMain";
     }
 
@@ -35,20 +38,19 @@ public class MatchController {
         return matchInPort.selectMatch();
     }
 
+    //매치 조회
     @ResponseBody
     @GetMapping("/selectMatch")
-    public ResponseEntity selectMatchList() {
+    public ResponseEntity selectMatchList(@RequestParam(name="teamsize", required = false) Integer teamsize) {
 
-        List<Map<String, Object>> res = matchInPort.selectMatchList();
-
+        List<Map<String, Object>> res;
+        if (teamsize != null) {
+            res = matchInPort.selectMatchList(teamsize);
+        } else {
+            res = matchInPort.selectMatchList(teamsize);  //teamSize null값 전달
+        }
         return ResponseEntity.ok(res);
 
-    }
-
-    @ResponseBody
-    @PostMapping("/aaa")
-    public ResponseMessageDto<Object> selectMessageTest() {
-        return ResponseMessageDto.of("resultCode", "message", ResponseMessageDto.of("a", "b", "c"));
     }
 
     //매치 생성
@@ -66,6 +68,10 @@ public class MatchController {
     }
 
     //매치 상세 조회
+    @PostMapping("/selectDetailMatch")
+    public ResponseEntity<String> selectDetailMatch(@RequestBody MatchRequest matchRequest){
+        return ResponseEntity.ok("Match selectDetailMatch successfully!");
+    }
 
 
     // 매치 정보 변경

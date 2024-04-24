@@ -11,7 +11,7 @@ import java.util.Map;
 public interface MatchOutPort {
     public String selectMatch();
 
-    List<Map<String, Object>> selectMatchList();
+    List<Map<String, Object>> selectMatchList(Integer teamsize);
 
     String insertMatch(MatchEntity matchEntity);
 }

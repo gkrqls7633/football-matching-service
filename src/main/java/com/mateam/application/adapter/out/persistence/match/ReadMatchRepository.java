@@ -12,5 +12,5 @@ import java.util.Map;
 public interface ReadMatchRepository {
     String selectMatch();
 
-    List<Map<String, Object>> selectMatchList();
+    List<Map<String, Object>> selectMatchList(Integer teamsize);
 }

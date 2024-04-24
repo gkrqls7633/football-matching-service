@@ -3,12 +3,9 @@ package com.mateam.application.biz.match.service;
 import com.mateam.application.adapter.out.persistence.match.entity.MatchEntity;
 import com.mateam.application.biz.match.port.in.MatchInPort;
 import com.mateam.application.biz.match.port.out.MatchOutPort;
-import com.mateam.application.domain.match.Match;
 import com.mateam.application.domain.match.MatchRequest;
-import com.mateam.util.ResponseMessageDto;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -29,9 +26,9 @@ public class MatchService implements MatchInPort {
     }
 
     @Override
-    public List<Map<String, Object>> selectMatchList() {
+    public List<Map<String, Object>> selectMatchList(Integer teamsize) {
 
-        return matchOutPort.selectMatchList();
+        return matchOutPort.selectMatchList(teamsize);
     }
 
     @Override
