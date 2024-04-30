@@ -90,7 +90,7 @@
     document.getElementById('match_form').addEventListener('submit', function(event) {
         var teamsize = document.getElementById('team_size').value;
         var currentUrl = window.location.href;
-        var newUrl = currentUrl + 'match/selectMath' + '?teamsize=' + teamsize;
+        var newUrl = currentUrl + 'match/selectMatch' + '?teamsize=' + teamsize;
         window.location.href = newUrl;
         event.preventDefault();
     });
