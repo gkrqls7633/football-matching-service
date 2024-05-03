@@ -78,27 +78,31 @@
     <div class="container-section">
         <section class="left-section" id="match_create">
             <h2>매치 생성 폼</h2>
-            <form action="/match/create" method="post">
-                <label for="team_size">팀 규모:</label>
-                <select name="team_size" id="team_size">
-                    <option value="5vs5">5vs5</option>
-                    <option value="6vs6">6vs6</option>
-                    <option value="7vs7">7vs7</option>
-                    <!-- 다른 옵션들 추가 가능 -->
+            <form id="matchForm" action="/match/insertMatch" method="post">
+                <label for="matchPersonCnt">인원</label>
+                <select name="matchPersonCnt" id="matchPersonCnt">
+                    <option value="4">4vs4</option>
+                    <option value="5">5vs5</option>
+                    <option value="6">6vs6</option>
+                    <option value="7">7vs7</option>
                 </select>
-                <label for="location">장소:</label>
-                <input type="text" id="location" name="location">
-                <label for="venue">경기장 선택:</label>
-                <select name="venue" id="venue">
-                    <option value="venue1">경기장 1</option>
-                    <option value="venue2">경기장 2</option>
-                    <option value="venue3">경기장 3</option>
+                <label for="location">장소</label>
+                <select id="location" name="location">
+                    <option value="location1">장소 1</option>
+                    <option value="location2">장소 2</option>
+                    <option value="location3">장소 3</option>
+                </select>
+                <label for="stadium">경기장</label>
+                <select name="stadium" id="stadium">
+                    <option value="stadium1">경기장 1</option>
+                    <option value="stadium2">경기장 2</option>
+                    <option value="stadium3">경기장 3</option>
                     <!-- 다른 경기장 옵션들 추가 가능 -->
                 </select>
                 <label for="gender">성별 구분:</label>
                 <select name="gender" id="gender">
-                    <option value="male">남성</option>
-                    <option value="female">여성</option>
+                    <option value="male">남성 전용</option>
+                    <option value="female">여성 전용</option>
                     <option value="mixed">혼성</option>
                 </select>
                 <label for="date">날짜:</label>
@@ -123,6 +127,36 @@
         <p>&copy; 2024 우리동네 축구팀</p>
     </div>
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    document.getElementById('matchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // 기본 동작(폼 서브밋) 막기
+        var formData = new FormData(this);
 
+        var jsonObject = {};
+        formData.forEach(function(value, key) {
+            jsonObject[key] = value;
+        });
+        var jsonData = JSON.stringify(jsonObject);
+
+        // 서버로 POST 요청 보내기
+        fetch('/match/insertMatch', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: jsonData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // 응답 처리
+        })
+        .catch(error => {
+            console.error('Error:', error); // 오류 처리
+        });
+    });
+</script>
 </body>
+
 </html>
+

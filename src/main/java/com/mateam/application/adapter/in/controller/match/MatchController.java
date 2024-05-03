@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -66,6 +65,7 @@ public class MatchController {
     }
 
     //매치 생성
+    @ResponseBody
     @PostMapping("/insertMatch")
     public ResponseEntity<String> insertMatch(@RequestBody MatchRequest matchRequest) {
         try {
