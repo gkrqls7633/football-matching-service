@@ -13,8 +13,8 @@
         <nav>
             <ul>
                 <li><a href="/">홈</a></li>
-                <li><a href="/matchMain">매치 찾기</a></li>
-                <li><a href="#">매치 생성</a></li>
+                <li><a href="/match/main">매치 찾기</a></li>
+                <li><a href="/match/create">매치 생성</a></li>
                 <li><a href="#">팀 등록</a></li>
                 <li><a href="#">팀 순위</a></li>
                 <li><a href="#">마이 페이지</a></li>
@@ -86,15 +86,14 @@
 
 <script>
 
-    // 매치 vs 정보 받아서 매치조회
+    // 매치 인원정보 받아서 매치조회
     document.getElementById('match_form').addEventListener('submit', function(event) {
         var teamsize = document.getElementById('team_size').value;
         var currentUrl = window.location.href;
-        var newUrl = currentUrl + 'match/selectMatch' + '?teamsize=' + teamsize;
+        var newUrl = currentUrl + 'match/main' + '?teamsize=' + teamsize;
         window.location.href = newUrl;
         event.preventDefault();
     });
-</script>
 </script>
 
 </body>

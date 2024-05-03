@@ -11,9 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @RequestMapping("/match")
@@ -27,9 +29,19 @@ public class MatchController {
     @GetMapping("/main")
     public String matchHome(@RequestParam(name="teamsize", required = false) Integer teamsize, Model model) {
 
-        model.addAttribute("teamsize", teamsize);
-
+        if(Objects.nonNull(teamsize)) {
+            model.addAttribute("teamsize", teamsize);  //defulat 6 임시 셋팅
+        } else{
+            model.addAttribute("teamsize", 6);
+        }
         return "/match/matchMain";
+    }
+
+    //매치생성 화면 조회
+    @GetMapping("/create")
+    public String matchHome() {
+
+        return "/match/createMatch";
     }
 
     @ResponseBody
@@ -47,7 +59,7 @@ public class MatchController {
         if (teamsize != null) {
             res = matchInPort.selectMatchList(teamsize);
         } else {
-            res = matchInPort.selectMatchList(teamsize);  //teamSize null값 전달
+            res = matchInPort.selectMatchList(teamsize);
         }
         return ResponseEntity.ok(res);
 
