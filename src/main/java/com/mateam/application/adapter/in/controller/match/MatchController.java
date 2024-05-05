@@ -43,6 +43,13 @@ public class MatchController {
         return "/match/createMatch";
     }
 
+    //매치 상세 모달창 조회
+    @GetMapping("/modal/matchDetailModal")
+    public String showMatchDetailModal() {
+        // 모달에 표시할 HTML 파일 경로를 리턴합니다.
+        return "/match/modal/matchDetailModal"; // matchDetailModal.html 파일의 이름
+    }
+
     @ResponseBody
     @GetMapping("/")
     public String selectMatch() {
