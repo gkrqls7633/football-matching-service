@@ -33,4 +33,19 @@
         )
     </select>
 
+    <select id="updateMatch"
+            resultType="com.mateam.application.adapter.out.persistence.match.entity.MatchEntity">
+        UPDATE
+            mtc.match_master
+        SET
+          match_date = to_timestamp(#{matchDate}, 'YYYYMMDD')
+        , stadium_num = #{stadiumNum}
+        , amnr_id = 'updateMatch'
+        , amnd_dttm = now()
+        , match_person_cnt = #{matchPersonCnt}
+        , match_time = #{matchTime}
+        where
+            match_num = #{matchNum}
+    </select>
+
 </mapper>

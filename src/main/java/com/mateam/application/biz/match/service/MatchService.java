@@ -47,4 +47,21 @@ public class MatchService implements MatchInPort {
 
         return matchOutPort.insertMatch(matchEntity);
     }
+
+    @Override
+    public String updateMatch(MatchRequest matchRequest) {
+
+        System.out.println(matchRequest.getMatchDate());
+        System.out.println(matchRequest.getMatchTime());
+
+        MatchEntity matchEntity = MatchEntity.builder()
+                .matchNum(matchRequest.getMatchNum())
+                .matchDate(matchRequest.getMatchDate())
+                .stadiumNum(matchRequest.getStadiumNum())
+                .matchPersonCnt(matchRequest.getMatchPersonCnt())
+                .matchTime(matchRequest.getMatchTime())
+                .build();
+
+        return matchOutPort.updateMatch(matchEntity);
+    }
 }

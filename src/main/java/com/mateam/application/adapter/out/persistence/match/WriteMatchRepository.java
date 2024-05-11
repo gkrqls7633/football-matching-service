@@ -9,4 +9,5 @@ public interface WriteMatchRepository {
 
     String insertMatch(MatchEntity matchEntity);
 
+    String updateMatch(MatchEntity matchEntity);
 }

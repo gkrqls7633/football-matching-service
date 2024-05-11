@@ -36,5 +36,9 @@ public class MatchPersistenceAdapter implements MatchOutPort {
         return writeMatchRepository.insertMatch(matchEntity);
     }
 
+    @Override
+    public String updateMatch(MatchEntity matchEntity) {
+        return writeMatchRepository.updateMatch(matchEntity);
+    }
 
 }

@@ -14,4 +14,6 @@ public interface MatchOutPort {
     List<Map<String, Object>> selectMatchList(Integer teamsize);
 
     String insertMatch(MatchEntity matchEntity);
+
+    String updateMatch(MatchEntity matchEntity);
 }
