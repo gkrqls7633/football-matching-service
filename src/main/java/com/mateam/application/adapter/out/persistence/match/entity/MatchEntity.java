@@ -14,6 +14,7 @@ import java.util.Date;
 @AllArgsConstructor // 모든 필드를 인수로 받는 생성자 생성
 public class MatchEntity extends commonDomain {
 
+    private String matchNum;
     private String matchDate;  //매치 날짜
     private String stadiumNum; //경기장 num
     private int matchPersonCnt; //팀당 인원 매칭 수

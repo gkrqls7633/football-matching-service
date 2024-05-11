@@ -31,7 +31,7 @@ public class MatchController {
         if(Objects.nonNull(teamsize)) {
             model.addAttribute("teamsize", teamsize);  //defulat 6 임시 셋팅
         } else{
-            model.addAttribute("teamsize", 6);
+            model.addAttribute("teamsize", 5);
         }
         return "/match/matchMain";
     }
@@ -56,7 +56,7 @@ public class MatchController {
         return matchInPort.selectMatch();
     }
 
-    //매치 조회
+    //매치 조회 api
     @ResponseBody
     @GetMapping("/selectMatch")
     public ResponseEntity selectMatchList(@RequestParam(name="teamsize", required = false) Integer teamsize) {
@@ -71,7 +71,7 @@ public class MatchController {
 
     }
 
-    //매치 생성
+    //매치 생성 api
     @ResponseBody
     @PostMapping("/insertMatch")
     public ResponseEntity<String> insertMatch(@RequestBody MatchRequest matchRequest) {
@@ -93,11 +93,18 @@ public class MatchController {
     }
 
 
-    // 매치 정보 변경
+    // 매치 정보 변경 api
     @PutMapping("/updateMatch")
     public ResponseEntity<String> updateMatch(@RequestBody MatchRequest matchRequest){
-        return ResponseEntity.ok("Match updated successfully!");
-    }
+        try {
+            matchInPort.updateMatch(matchRequest);
+            return ResponseEntity.ok("Match updated successfully!");
+
+        } catch (Exception e) {
+            String errorMessage = "Failed to update match: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(errorMessage);
+        }    }
 
     // 매치 요청(신청)
     @PostMapping("/applyMatch")

@@ -11,4 +11,6 @@ public interface MatchInPort {
     List<Map<String, Object>> selectMatchList(Integer teamsize);
 
     String insertMatch(MatchRequest matchRequest);
+
+    String updateMatch(MatchRequest matchRequest);
 }
