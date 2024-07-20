@@ -1,9 +1,7 @@
 package com.mateam.application.biz.match.port.out;
 
+import com.mateam.application.adapter.out.persistence.match.entity.MatchApplyEntity;
 import com.mateam.application.adapter.out.persistence.match.entity.MatchEntity;
-import com.mateam.application.domain.match.Match;
-import com.mateam.application.domain.match.MatchRequest;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -16,4 +14,14 @@ public interface MatchOutPort {
     String insertMatch(MatchEntity matchEntity);
 
     String updateMatch(MatchEntity matchEntity);
+
+    String deleteMatch(MatchEntity matchEntity);
+
+    String applyMatch(MatchApplyEntity matchApplyEntity);
+
+    MatchApplyEntity selectApplyExistYsno(String applyNum);
+
+    Map<String, Object> selectApplyNum(String matchNum);
+
+    String updateMatchApplyNum(Map<String, Object> updateApplyNumParam);
 }

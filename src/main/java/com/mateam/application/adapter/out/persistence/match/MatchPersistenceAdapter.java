@@ -1,13 +1,12 @@
 package com.mateam.application.adapter.out.persistence.match;
 
+import com.mateam.application.adapter.out.persistence.match.entity.MatchApplyEntity;
 import com.mateam.application.adapter.out.persistence.match.entity.MatchEntity;
 import com.mateam.application.biz.match.port.out.MatchOutPort;
-import com.mateam.application.domain.match.MatchRequest;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +38,31 @@ public class MatchPersistenceAdapter implements MatchOutPort {
     @Override
     public String updateMatch(MatchEntity matchEntity) {
         return writeMatchRepository.updateMatch(matchEntity);
+    }
+
+    @Override
+    public String deleteMatch(MatchEntity matchEntity) {
+        return writeMatchRepository.deleteMatch(matchEntity);
+    }
+
+    @Override
+    public String applyMatch(MatchApplyEntity matchApplyEntity) {
+        return writeMatchRepository.applyMatch(matchApplyEntity);
+    }
+
+    @Override
+    public MatchApplyEntity selectApplyExistYsno(String applyNum) {
+        return readMatchRepository.selectApplyExistYsno(applyNum);
+    }
+
+    @Override
+    public Map<String, Object> selectApplyNum(String matchNum) {
+        return readMatchRepository.selectApplyNum(matchNum);
+    }
+
+    @Override
+    public String updateMatchApplyNum(Map<String, Object> updateApplyNumParam) {
+        return writeMatchRepository.updateMatchApplyNum(updateApplyNumParam);
     }
 
 }

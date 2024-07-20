@@ -15,5 +15,7 @@ public interface MatchInPort {
 
     String updateMatch(MatchRequest matchRequest);
 
+    String deleteMatch(MatchRequest matchRequest);
+
     String applyMatch(MatchApplyRequest matchApplyRequest);
 }

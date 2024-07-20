@@ -8,11 +8,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor // 기본 생성자 생성
-@AllArgsConstructor // 모든 필드를 인수로 받는 생성자 생성
+@NoArgsConstructor
+@AllArgsConstructor
 public class MatchApplyRequest extends commonDomain {
 
-    private String applyTeamName;
-    private String applyTeamGrade;
-    private String applyDate;
+    private String matchNum;
+    private String applyNum;
+    private int applySrnb;
+    private String applyYsno;
+    private String applyTime;
 }

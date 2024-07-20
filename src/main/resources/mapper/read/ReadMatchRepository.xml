@@ -29,4 +29,32 @@
         ;
     </select>
 
+    <select id="selectApplyExistYsno"
+            resultType="com.mateam.application.adapter.out.persistence.match.entity.MatchApplyEntity">
+        SELECT case when count(*) >= 1 then 'Y'
+                    else 'N'
+               end as apply_exist_ysno
+             , max(apply_srnb) as max_apply_srnb
+        FROM mtc.match_apply t1
+        WHERE 1=1
+        AND exists (select 1
+                    from mtc.match_apply ma
+                    where t1.apply_num = ma.apply_num
+                      and ma.apply_num = #{applyNum}
+                    )
+        AND t1.dlt_ysno = 'N'
+    </select>
+
+    <select id="selectApplyNum" resultType="map">
+        SELECT CASE WHEN apply_num = '' OR apply_num IS NULL THEN nextval('apply_num_sequence')::text
+                    ELSE apply_num::text
+            END as applyNum
+             ,  CASE WHEN apply_num = '' OR apply_num IS NULL then 'N'
+                     ELSE 'Y'
+            END AS applyNumExitYsno  -- 신청num 존재 여부
+        FROM mtc.match_master
+        WHERE 1=1
+          AND match_num = #{matchNum};
+    </select>
+
 </mapper>

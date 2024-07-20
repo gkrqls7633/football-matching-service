@@ -104,18 +104,48 @@ public class MatchController {
             String errorMessage = "Failed to update match: " + e.getMessage();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(errorMessage);
-        }    }
+        }
+    }
+
+    //매치 정보 삭제 api
+    @DeleteMapping("/deleteMatch")
+    public ResponseEntity<String> deleteMatch(@RequestBody MatchRequest matchRequest){
+        try {
+            matchInPort.deleteMatch(matchRequest);
+            return ResponseEntity.ok("Match deleted successfully!");
+
+        } catch (Exception e) {
+            String errorMessage = "Failed to delete match: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(errorMessage);
+        }
+    }
 
     // 매치 요청(신청)
     @ResponseBody
     @PostMapping("/applyMatch")
-    public String applyMatch(@RequestBody MatchApplyRequest matchApplyRequest){
-        return matchInPort.applyMatch(matchApplyRequest);
+    public ResponseEntity<String> applyMatch(@RequestBody MatchApplyRequest matchApplyRequest){
+        try {
+            matchInPort.applyMatch(matchApplyRequest);
+            return ResponseEntity.ok("Match applied successfully!");
+
+        } catch (Exception e) {
+            String errorMessage = "Failed to apply match: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(errorMessage);
+        }
     }
 
     // 매치 승인
     @PostMapping("/approveMatch")
     public ResponseEntity<String> approveMatch(@RequestBody MatchApproveRequest matchApproveRequest){
         return ResponseEntity.ok("Match approved successfully!");
+    }
+
+    // 매치 거절
+    @PostMapping("/refuseMatch")
+    public ResponseEntity<String> refuseMatch(@RequestBody MatchRequest matchRequest){
+        return ResponseEntity.ok("Match refused successfully!");
+
     }
 }
