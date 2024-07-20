@@ -107,9 +107,10 @@ public class MatchController {
         }    }
 
     // 매치 요청(신청)
+    @ResponseBody
     @PostMapping("/applyMatch")
-    public ResponseEntity<String> applyMatch(@RequestBody MatchApplyRequest matchApplyRequest){
-        return ResponseEntity.ok("Match applied successfully!");
+    public String applyMatch(@RequestBody MatchApplyRequest matchApplyRequest){
+        return matchInPort.applyMatch(matchApplyRequest);
     }
 
     // 매치 승인

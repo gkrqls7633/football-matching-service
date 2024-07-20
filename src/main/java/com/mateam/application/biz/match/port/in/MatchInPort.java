@@ -1,5 +1,6 @@
 package com.mateam.application.biz.match.port.in;
 
+import com.mateam.application.domain.match.MatchApplyRequest;
 import com.mateam.application.domain.match.MatchRequest;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface MatchInPort {
     String insertMatch(MatchRequest matchRequest);
 
     String updateMatch(MatchRequest matchRequest);
+
+    String applyMatch(MatchApplyRequest matchApplyRequest);
 }

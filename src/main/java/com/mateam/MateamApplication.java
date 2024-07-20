@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import java.util.Arrays;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.mateam","com.mateam"})
+//@ComponentScan(basePackages = {"com.mateam","com.mateam"})
 public class MateamApplication implements CommandLineRunner {
 
 	@Autowired
