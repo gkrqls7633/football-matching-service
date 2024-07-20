@@ -48,4 +48,62 @@
             match_num = #{matchNum}
     </select>
 
+    <select id="deleteMatch"
+            resultType="com.mateam.application.adapter.out.persistence.match.entity.MatchEntity">
+        UPDATE
+            mtc.match_master
+        SET
+              amnr_id = 'deleteMatch'
+            , amnd_dttm = now()
+            , dlt_ysno = 'Y'
+        where
+            match_num = #{matchNum}
+    </select>
+
+    <select id="applyMatch"
+            resultType="com.mateam.application.adapter.out.persistence.match.entity.MatchApplyEntity">
+        insert into mtc.match_apply
+            ( apply_num
+            , apply_srnb
+            , apply_ysno
+            , apply_time
+            , crtr_id
+            , cret_dttm
+            , amnr_id
+            , amnd_dttm
+            , dlt_ysno
+            )
+        values
+            (
+             <choose>
+                <when test="applyExistYsno.equals('Y')">
+                    #{applyNum}
+                </when>
+                <otherwise>
+                    nextval('apply_num_sequence')
+                </otherwise>
+             </choose>
+            , #{applySrnb}
+            , #{applyYsno}
+            , #{applyTime}
+            , #{crtrId}
+            , now()
+            , #{amnrId}
+            , now()
+            , 'N'
+            )
+    </select>
+
+    <select id="updateMatchApplyNum" parameterType="map">
+        UPDATE
+            mtc.match_master
+        SET
+            apply_num = #{applyNum}
+          , amnr_id = 'updateMatchApplyNum_api'
+          , amnd_dttm = now()
+        where
+            match_num = #{matchNum}
+
+    </select>
+
 </mapper>

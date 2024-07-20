@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/")
-//@RestController
-@Controller
+@RestController
 public class SampleController {
 
 //    @Autowired
@@ -16,7 +15,7 @@ public class SampleController {
 
     @GetMapping("/")
     public String home() {
-        return "index";
+        return "hello";
     }
 
     @GetMapping("/matchMain")
