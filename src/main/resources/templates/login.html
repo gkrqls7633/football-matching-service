@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <form name="loginForm" method="post" th:action="@{/login}">
+        <table>
+            <tr>
+                <td><b>아이디</b></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="username" class="inputbox"></td>
+            </tr>
+            <tr>
+                <td><b>비밀번호</b></td>
+            </tr>
+            <tr>
+                <td><input type="password" name="password" class="inputbox"></td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- 로그인 버튼 -->
+                    <button type="submit">로그인</button>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+</body>
+</html>

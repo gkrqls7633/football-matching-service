@@ -17,4 +17,6 @@ public class MatchApplyRequest extends commonDomain {
     private int applySrnb;
     private String applyYsno;
     private String applyTime;
+    private String applyTeamName;
+    private String applyDate;
 }

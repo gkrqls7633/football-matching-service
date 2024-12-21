@@ -42,9 +42,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16' // 적절한 버전으로 변경 가능
 
-
-
-
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	implementation "org.springframework.boot:spring-boot-starter-security"
 }
 
 tasks.named('bootBuildImage') {

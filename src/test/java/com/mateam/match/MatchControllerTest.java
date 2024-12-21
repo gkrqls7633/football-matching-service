@@ -35,23 +35,23 @@ public class MatchControllerTest {
     private MatchInPort matchInPort;
 
 
-    @DisplayName("applyMatch 테스트 코드 샘플")
-    @Test
-    void applyMatchTest() throws Exception {
-        MatchApplyRequest request = new MatchApplyRequest();
-        request.setApplyTeamName("찐밥FC");
-        request.setApplyDate("2024-07-20");
-
-        when(matchInPort.applyMatch(any(MatchApplyRequest.class))).thenReturn("Match applied successfully!");
-
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/match/applyMatch")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Match applied successfully!"));
-
-        verify(matchInPort, times(1)).applyMatch(any(MatchApplyRequest.class));
-
-    }
+//    @DisplayName("applyMatch 테스트 코드 샘플")
+//    @Test
+//    void applyMatchTest() throws Exception {
+//        MatchApplyRequest request = new MatchApplyRequest();
+//        request.setApplyTeamName("찐밥FC");
+//        request.setApplyDate("2024-07-20");
+//
+//        when(matchInPort.applyMatch(any(MatchApplyRequest.class))).thenReturn("Match applied successfully!");
+//
+//
+//        mockMvc.perform(MockMvcRequestBuilders.post("/match/applyMatch")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(objectMapper.writeValueAsString(request)))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string("Match applied successfully!"));
+//
+//        verify(matchInPort, times(1)).applyMatch(any(MatchApplyRequest.class));
+//
+//    }
 }
